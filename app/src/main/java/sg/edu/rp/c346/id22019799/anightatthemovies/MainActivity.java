@@ -57,33 +57,36 @@ public class MainActivity extends AppCompatActivity {
 
                 // Insert a task
                 String title= editTitle.getText().toString();
-                String singer= editGenre.getText().toString();
+                String genre= editGenre.getText().toString();
                 int year = Integer.parseInt(editYear.getText().toString());
-                String star = "";
-                int checkedradio = radioGrpStar.getCheckedRadioButtonId();
-                if(checkedradio==R.id.radioButton1){
-                    star="*";
-                }else if(checkedradio==R.id.radioButton2){
-                    star="**";
-                }else if(checkedradio==R.id.radioButton3){
-                    star="***";
-                }else if(checkedradio==R.id.radioButton4){
-                    star="****";
-                }else{
-                    star="*****";
-                }
-                //spnRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    //@Override
-                    //public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                        //switch (i){
-                            //case 0:
-                                //textView.setText("Spinner Item, Yes Selected");
-                                //break;
-                            //case 1:
-                                //textView.setText("Spinner Item, No Selected");
-                                //break;
-                        //}
-                    //}
+                String rating = "";
+                spnRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                        switch (i){
+                            case 0:
+                                rating = "G";
+                                break;
+                            case 1:
+                                rating = "PG";
+                                break;
+                            case 2:
+                                rating = "PG13";
+                                break;
+                            case 3:
+                                rating = "NC16";
+                                break;
+                            case 4:
+                                rating = "M18";
+                                break;
+                            case 5:
+                                rating = "R21";
+                                break;
+                        }
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        
+                    }
                     data=db.getTasks();
                 db.insertMovie(title, genre,year,rating);
                 taskky.notifyDataSetChanged();
